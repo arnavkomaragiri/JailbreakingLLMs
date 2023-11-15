@@ -9,6 +9,6 @@ RUN apt-get update && apt-get install -y git
 
 RUN pip3 install fschat==0.2.23
 
-RUN pip3 install pandas seaborn matplotlib numpy datasets evaluate
+RUN pip3 install pandas seaborn matplotlib numpy datasets evaluate transformers accelerate bitsandbytes
 
 RUN pip install anthropic google-generativeai openai
