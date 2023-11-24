@@ -171,6 +171,7 @@ class TargetLM():
 
 def load_indiv_model(model_name, device=None):
     model_path, template = get_model_path_and_template(model_name)
+    tokenizer_path = model_path if "capybara" not in model_path.lower() else "01-ai/Yi-34B"
     if model_name in ["gpt-3.5-turbo", "gpt-4"]:
         lm = GPT(model_name)
     elif model_name in ["claude-2", "claude-instant-1"]:
@@ -181,10 +182,12 @@ def load_indiv_model(model_name, device=None):
         model = AutoModelForCausalLM.from_pretrained(
                 model_path, 
                 torch_dtype=torch.float16,
-                low_cpu_mem_usage=True,device_map="auto").eval()
+                low_cpu_mem_usage=True,
+                device_map="auto",
+                load_in_4bit=True).eval()
 
         tokenizer = AutoTokenizer.from_pretrained(
-            model_path,
+            tokenizer_path,
             use_fast=False
         ) 
 
