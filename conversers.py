@@ -3,7 +3,7 @@ import common
 from language_models import GPT, Claude, PaLM, HuggingFace
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from config import VICUNA_PATH, LLAMA_PATH, ATTACK_TEMP, TARGET_TEMP, ATTACK_TOP_P, TARGET_TOP_P   
+from config import VICUNA_PATH, LLAMA_PATH, CAPYBARA_PATH, ATTACK_TEMP, TARGET_TEMP, ATTACK_TOP_P, TARGET_TOP_P   
 
 def load_attack_and_target_models(args):
     # Load attack model and tokenizer
@@ -218,6 +218,10 @@ def get_model_path_and_template(model_name):
         "llama-2":{
             "path":LLAMA_PATH,
             "template":"llama-2"
+        },
+        "capybara":{
+            "path":CAPYBARA_PATH,
+            "template":"vicuna_v1.1"
         },
         "claude-instant-1":{
             "path":"claude-instant-1",
